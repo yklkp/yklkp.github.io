@@ -24,6 +24,7 @@ tags: [杂项]
 
 然后在github上面的setting中的Deploy keys里添加上复制过来的keys。
 ![图四]({{site.baseurl}}/assets/img/2018/new3.png)
+### Jekyll的使用
 5. 使用Jekyll下载模板。[Jekyll网址](http://jekyllthemes.org/)
 6. 下载下来的模板使用需要注意以下几点：
     - 每个博客文章放入_posts文件夹下，并命名格式必须是时间加名称，如:2018-08-30-my-first-blog。
