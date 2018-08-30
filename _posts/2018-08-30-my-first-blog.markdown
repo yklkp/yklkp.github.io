@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 这个是严凯的个人博客
+title: 千里之行，始于足下
 date: 2018-08-30 16:06:20
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
