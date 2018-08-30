@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 千里之行，始于足下
-date: 2018-08-30 16:06:20
+date: 2018-08-30 16:06:20 +01000
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [杂项]
