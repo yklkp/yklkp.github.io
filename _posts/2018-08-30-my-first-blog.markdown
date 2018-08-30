@@ -14,12 +14,12 @@ tags: [杂项]
 1. 准备一个github账号
 2. 下载git
 3. 在github上创建新仓库，方法有多种，这里我只总结两种：一个是在github上直接创建，第二种是使用phpstrom来快速创建。
-    - 方法一：![图一](assets/img/2018/new1.png)
-    ![图二](assets/img/2018/new2.png)
+    - 方法一：![图一]({{site.baseurl}}/assets/img/2018/new1.png)
+    ![图二]({{site.baseurl}}/assets/img/2018/new2.png)
     这里需要注意的是图二中，那个username就是自己github账号的名字，仓库名就是后面自己访问博客的域名。
     - 方法二：在phpstrom中的 VCS-----Import into version control----Share Project on GitHub，然后输入自己的github账号与密码，登陆成功后，再输入仓库名，名字和方法一中一样，需要自己的名字加上.github.io，这样才可以通过这个域名访问到自己的博客。
 4. 创建SSH KEY，这个可以通过本地安装的git工具快速获取，鼠标右击，选择Git Gui Here，然后点help，Show SSH Key，中间需要填什么的都可以不填，一路下去，可见下图
-![gui](assets/img/2018/new4.png)，然后在github上面的setting中的Deploy keys里添加上复制过来的keys。![图四](assets/img/2018/new3.png)
+![gui]({{site.baseurl}}/assets/img/2018/new4.png)，然后在github上面的setting中的Deploy keys里添加上复制过来的keys。![图四](assets/img/2018/new3.png)
 5. 使用Jekyll下载模板。[Jekyll网址](http://jekyllthemes.org/)
 6. 下载下来的模板使用需要注意以下几点：
     - 每个博客文章放入_posts文件夹下，并命名格式必须是时间加名称，如:2018-08-30-my-first-blog。
