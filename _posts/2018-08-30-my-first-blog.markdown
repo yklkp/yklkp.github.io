@@ -21,6 +21,7 @@ tags: [杂项]
     - 方法二：在phpstrom中的 VCS-----Import into version control----Share Project on GitHub，然后输入自己的github账号与密码，登陆成功后，再输入仓库名，名字和方法一中一样，需要自己的名字加上.github.io，这样才可以通过这个域名访问到自己的博客。
 4. 创建SSH KEY，这个可以通过本地安装的git工具快速获取，鼠标右击，选择Git Gui Here，然后点help，Show SSH Key，中间需要填什么的都可以不填，一路下去，可见下图
 ![gui]({{site.baseurl}}/assets/img/2018/new4.png)
+
 然后在github上面的setting中的Deploy keys里添加上复制过来的keys。
 ![图四]({{site.baseurl}}/assets/img/2018/new3.png)
 5. 使用Jekyll下载模板。[Jekyll网址](http://jekyllthemes.org/)
@@ -30,6 +31,7 @@ tags: [杂项]
 7. 做完以上步骤即可通过域名访问到自己的博客了。下面我们可以在此博客中加入一些其他的网页链接，比如加上自己的简历，简历的模板样式等需要单独放入一个文件夹中，避免混乱。所要注意的是点击外连接的html要放在根目录下，即和index.html同级下，因为我们访问的时候是域名+文件夹名字。（当然也可以在a标签中设置其他路径，为了样式引入方便，则选择放入根目录下）
 
 ![end]({{site.baseurl}}/assets/img/we-in-rest.jpg)
+
 ##如何使用phpstrom管理自己的github上的博客
 - 首先，本地是需要装git工具，然后在settings中的version control里的git设置git.exe的位置。在自己安装git的位置里面的cmd里。
 - 然后点击VCS，再点Checkout From Version Control，再点git。将自己的博客github地址填上，即可pull下来。
