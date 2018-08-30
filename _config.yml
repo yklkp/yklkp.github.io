@@ -6,6 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
 permalink: ':title/'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+resumeurl: "/resume.html"
 site-twitter: #if your site has a twitter account, enter it here
 
 # Author Settings
@@ -14,9 +15,9 @@ author-img: mytou.jpg # add your photo
 about-author: 努力，奋斗！ # add description
 social-twitter: # add your Twitter handle
 social-facebook: # add your Facebook handle
-social-github: https://github.com/yklkp # add your Github handle
+social-github: yklkp # add your Github handle
 social-linkedin: # add your Linkedin handle
-social-email: 3198556251@qq.com# add your Email address
+social-email: 3198556251@qq.com # add your Email address
 
 # Disqus
 discus-identifier: kyle-2018 # add your discus identifier
