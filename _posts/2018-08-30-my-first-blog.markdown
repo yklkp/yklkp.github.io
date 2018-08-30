@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 千里之行，始于足下
-date: 2018-08-30 16:06:20 +01000
+date: 2018-08-30 16:06:20 +0500
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [杂项]
@@ -32,7 +32,7 @@ tags: [杂项]
 
 ![end]({{site.baseurl}}/assets/img/we-in-rest.jpg)
 
-## 如何使用phpstrom管理自己的github上的博客
+## 如何使用phpstrom管理自己的博客
 - 首先，本地是需要装git工具，然后在settings中的version control里的git设置git.exe的位置。在自己安装git的位置里面的cmd里。
 - 然后点击VCS，再点Checkout From Version Control，再点git。将自己的博客github地址填上，即可pull下来。
 - 每次提交前需要先pull一下，这个是在团队合作中必须要做的一步，防止和别人的代码冲突覆盖。当然我们这里自己的博客不需要这一步，当然，如果你有两个地方修改的时候还是需要pull下来的，比如在家和公司。总之，如果只是在一台电脑上操作则不需要pull，若是一台以上必须要先pull。提交push时候要先commit，写上提交文字说明，最后push。
