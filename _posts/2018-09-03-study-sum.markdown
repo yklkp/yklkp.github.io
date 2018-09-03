@@ -1,0 +1,255 @@
+---
+layout: post
+title: 学习总结
+date: 2018-09-03 16:10:00 +0300
+description:  # Add post description (optional)
+img: software.jpg # Add image post (optional)
+tags: [总结] # add tag
+---
+
+
+##学习总结
+
+目录 学习总结一、tp框架的学习1.路由的问题2.MVC的使用3.登陆的实现4.css\js等样式引入的问题5.点击图片实现上传的原理6.登陆中所运用到的js代码7.弹窗的绑定数据8.二维数组添加数据9.jq中的ajax上传图片的实现二、知识汇总1.关系型数据库的三范式2.git研究总结三、小程序1.代码逻辑2.跳转问题的总结3.标签
+
+###一、tp框架的学习
+
+####1.路由的问题
+
+   配了虚拟机后的访问方式如：www.kk.com，其中的Apache中的Vhosts.config文件里所对应的域名是以public结尾的，所以在url地址栏中输入对应的域名即可访问。
+
+   但是，在使用url的时候会遇到跳转不了的问题，解决方法如下：
+
+   在public同级的目录下找到一个叫 .htaccess文件，其中内容替换成：
+
+       <IfModule mod_rewrite.c>
+       
+         Options +FollowSymlinks -Multiviews
+       
+         RewriteEngine On
+       
+         RewriteCond %{REQUEST_FILENAME} !-d
+       
+         RewriteCond %{REQUEST_FILENAME} !-f
+       
+         RewriteRule ^(.*) index.php?/1 [QSA,PT,L]
+       
+       </IfModule>
+
+   然后在需要跳转的标签里写上 {:url(‘index/index/login’)}即可跳转，第一个index表示在哪个文件夹中，第二个index表示在哪个控制器中，最后一个login表示的是login方法，对应的控制器指向的是view中的login.html文件。
+
+####2.MVC的使用
+
+   在app文件夹下，创建前后台文件夹，分别为index和admin，其中index在框架中是自带的，文件夹名为小写。
+
+   然后在各自文件夹中创建controller、model、view文件夹，同样是小写。
+
+   接着在controller中创建Index.php,对应着在model中创建Person.php，都为大驼峰，而在view中先创建index的文件夹，为小写，然后在其中放入html文件。
+
+   其中控制器和模型之间的继承关系如下图所示：
+
+   
+
+   
+
+####3.登陆的实现
+
+   设计思路：使用Ajax将异步实现功能，提示信息。
+
+   问题：js和jquery的使用
+
+   要点：使用前要将ajax.php和jquery库引入
+
+   注意：在最后一个验证码输入的事件为输入框实时获取内容，这样在输完以后即可判断是否正确并解除登陆按钮。
+
+####4.css\js等样式引入的问题
+
+   在config.php配置文件中可以设置全局，如图
+
+   
+
+   在其中可以写 ‘ADMIN’   => ‘../../’,
+
+   可以在全文替换。
+
+####5.点击图片实现上传的原理
+
+   Html中代码：
+
+       <input type="hidden" name="uid" value="{$uid}" id="hide_id">	
+       	<img class="avatar size-XL l" src="../../static/h-ui/images/ucnter/avatar-default.jpg" onclick="fileSelect()" title="点击更换头像" />
+       	<form id="form_face" method="post" enctype="multipart/form-data">
+       		<input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();" style="display:none;">
+       	</form>
+
+   js中代码：
+
+       function fileSelect() {
+       	document.getElementById("fileToUpload").click();
+       }
+       
+       function fileSelected() {
+       
+       //触发上传点击完图片后触发此函数
+       	var file = $("#fileToUpload").val();
+       	var hide_id = $("#hide_id").val();
+       	console.log(file);
+       	console.log(hide_id);
+       	ajax.request({
+               url:"{:url('admin/user/upload')}?"+"hide_id="+hide_id+ "&&" +"file="+file,
+               type:'get',
+               jsonp:'callback',
+               callback:function(data){
+                   var obj = JSON.parse(data);
+                   if(obj.state == 1){
+                   	console.log('success');
+                   } else {
+                   	console.log('error');
+                   }
+               }
+           });
+       }
+
+   此处的ajax代码尚不能实现上传，原因是在TP框架中的图片上传类需要接受的file是对象格式，而这里的ajax传过去的file是字符串。
+
+   所以此处仅说明点击图片实现上传图片的逻辑而已。
+
+####6.登陆中所运用到的js代码
+
+- js判断中，如果是错误的，则写的 return false; 来终止下面代码的执行。
+- 几个触发事件：Focus
+      $(document).ready(function(){
+            $("#password").focus(function(){
+                $("#yzm").val("");
+                var name = $("#username").val();
+                if(!name) {
+                  $(".error-box").text('请先填写用户名！');
+                  return false;
+                } 
+            });
+        });
+  离开输入框事件 blur:
+      $(document).ready(function(){
+            $("#password").blur(function(){
+                $("#yzm").val("");
+                var name = $("#username").val();
+                if(!name) {
+                  $(".error-box").text('请先填写用户名！');
+                  return false;
+                } 
+            });
+        });
+   输入框实时监控事件 bind:
+      $("#yzm").bind('input propertychange', function(){
+      		//计算输入的个数：直接在变量后面加上 .length，即可
+      });
+  jquery刷新验证码图片
+      $("#yzm-img").attr("src","{:captcha_src()}?flag="+Math.random());
+  清空值：
+      1)Text中可以是 $(“#id”).empty()、$(“#id”).val(“”)、$(“#id”).text(“”)
+      2)input中是 $(“#id”).val(“”)
+  
+
+####7.弹窗的绑定数据
+
+   根据Ajax将数据传过去后，用 Session 将数据接受，在传过去显示的方法中接受后再清除Session  Session::clear()
+
+####8.二维数组添加数据
+
+   在控制器中查出一个二维数组数据，要操作其中的某个字段，并将其压入原数组中，再通过模板渲染可以对应的输出到页面。具体所用到的是引用传参技术，代码截图如下：
+
+   
+
+[需求：将2018-06-16 13:10:20中的16拿出来，将2018-06换成2018/06。]: 
+
+####9.jq中的ajax上传图片的实现
+
+- 图片上传：使用jq 的图片上传，在view中的js代码如下图：
+  
+  Formadd是form中的id，点击添加后将form中的文件一并提交，var form 和 var formdata的操作是将数据整理成对象，下面的$.ajax是jq中的ajax方法。其中type是提交数据的方法类型，不写默认为”GET”,data为所传的数据，后面删除图片中会讲到这个data中数据传输注意的东西。在控制器中返回的json数据状态可以进行反馈操作，这里成功的时候要执行一下刷新当前页面的操作，不然不能够实现更新效果。
+- 接着我们来看控制器中的代码怎么处理：
+  
+  在控制器上面要use一下think\File和think\Request类。首先先在public中建一个空的文件夹uploads，用于存放上传的图片本地缓存。上面的代码中会看到有两个操作，一个是上传图片，另一个是关联表的插入，获取到上传图片的表插入数据的最新id，然后将其作为外键插入到关联表中。具体处理代码中已给出。
+- 最后我们来看一下删除图片的操作
+  
+  这里的type没有写是默认的get传输方式，而需要注意的是data数据的传输使用{id:id}的方式，多个数据中间用逗号，隔开
+  
+  ajax传输的数据如图：
+  
+
+###二、知识汇总
+
+####1.关系型数据库的三范式
+
+   简单理解：
+
+- 每一列只有一个值，字段具有原子性
+- 每一行都能区分，设置有主键或者关键字作为唯一标识
+- 每一个表都不包含其他表中已包含的非主关键字信息，如帖子表中有发帖人ID，就不能存在发帖人的姓名，这样会导致数据冗余。
+
+   研究中顺便研究了一下数据库的四大特性，这里主要记录其中的两个特性的关系，首先四大特性分别为：
+
+- 原子性
+- 一致性
+- 隔离性
+- 持久性
+
+   这里主要说一下原子性和一致性。原子性的意思是事务要么一起执行成功，要么一起失败后全部回滚。而一致性的意思是一个事务执行之前和之后都必须处于一致的状态。咋一看两个都差不多，但下面一个例子就可以说明两个是不同的：
+
+   原子性：A向B账户中转100，那么A账户要减去100，同时B账户要增加100，如果中间断了，则要进行事务回滚，A不减，B不加。
+
+   一致性：A向B账户转100，C也向B账户中转100，正常情况下的一致性是B账户多了200，而同时操作的话后面的事务会覆盖掉前面的，所以结果是B只多了100，但A和C账户都少了100。这个的解决办法就涉及到了第三大特性，隔离性。
+
+   以下内容为粘贴网上回答：
+
+   原则上无非是两种类型的锁：悲观锁和乐观锁。
+
+####2.git研究总结
+
+   关于git 的版本控制工具的使用，首先本地需要下载安装git ，安装的目录指向的是php.exe，在本地的php地址，也就是说本地使用的是哪个版本的php，则git就安装在对应的php.exe中，这与环境变量是对应关系的，使用phpstudy则会安装完git的同时自动设置git的对应环境变量。
+
+   下面总结使用：首先需要在git管理平台申请一个仓库，如www.coding.net，然后在仓库中建立项目，如tp5。本地中的git安装完成后即可使用，在项目的文件夹上右击，选择git Bush here，然后执行下面的命令即可。这里主要说一下分支的东西。
+
+   我们要清楚本地和线上的git管理平台的区别：线上的git仓库中，默认有master分支，可以设置默认分支是哪个，不需要手动新建分支，因为我们接下来在本地的操作可以实现新建，线上的分支合并可以找到对应的按钮，然后选择对比，申请合并，需要注意的地方是，一定要看清楚哪个合并到哪个上面，目标文件为将要合并成的文件，而源文件是现有的文件，如果反了，将空的文件合并到源文件上，则会变成空文件的。
+
+   接下来我们来说本地的git使用，我们第一次初始化后，只有一个master分支，本地的分支也是可以合并的，命令在下面。我们要建立一个分支dev，这样我们将本地的分支dev push 到线上的时候，线上会多出个dev 分支，这样，线上会有master 和dev 两个分支，在确认没有冲突后可以将两个分支合并，其实我们可以一直使用dev分支，master分支的意义是备份，本地如果文件丢失的可以从master分支上再克隆下来。所以，本地建立一个dev分支，在第一次建立分支的时候，他的文件是和master文件是一样的，那么我们在dev分支上操作，增删改后，将文件push上去，则即可更新线上dev分支代码。
+
+   基本操作命令：
+
+       git init  
+       git clone 地址  或者使用pull : git pull 地址
+       git branch -----查看有哪些分支
+       git branch dev ----新建dev分支
+       git checkout dev  ----切换到dev分支
+       Git touch 1.text -----新建一个文件
+       Git rm 1.text   ----删除一个文件
+       Git --help   ---查看命令
+       Git add .   ----将本地文件放入缓存区
+       Git commit -m “...”   -----提交到暂缓区
+       Git status ------查看状态
+       Git push https://coding.net/u/ykk0214/p/tp5/git dev  -----将dev分支推到线上
+
+   
+
+###三、小程序
+
+####1.代码逻辑
+
+   小程序最外层的app.json 文件是配置全局的配置文件，在最上面的pages 是指向文件的路劲，第一行的位置是打开小程序的第一个页面，一般设置为首页，app.js可以配置tabBar底部，也可以设置全局对象，如登陆的个人信息可以设置一个userinfo：
+
+       appData: {
+       userinfo: none
+       }
+
+   pages页面中可以建立其他页面，注意的是.json文件中必须要有 {}，即使是空的。在各个页中的js中可以输入page来设置基本的函数方法等。js文件中是关键的数据传输文件和事件处理文件，最上面的data文件就是相当于php中的模板渲染，其中定义的数据是输出到页面中的。
+
+   Set.Data({ username: this.data.username  })，将数据绑定起来赋值给上面定义的对象
+
+####2.跳转问题的总结
+
+- 在app.json中定义的页面为tabBar页，这种页面的跳转使用的是 wx.switchTab({ url: “ ”})
+- 非tabBar页的跳转使用 wx.navigateTo({ url: “  ”}) 和 wx.redirectTo({ url: “  ”})，这两个的区别是，navigateTo是有返回页的，redirectTo是没有返回页的
+
+####3.标签
+
+   绑定数据的标签-----冒泡事件：bindtap=””,非冒泡事件，只触发子字节的：catchtap=” ”
