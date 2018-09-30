@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Android app 打包详细过程
-date: 2018-09-29 15:15:00 +0300
+date: 2018-09-29 15:15:00 +030000
 description: 
 img: mac.jpg # Add image post (optional)
 tags: [ionic打包, App] # add tag
@@ -135,7 +135,7 @@ Win10的话就分两条新建，不需要分号。
 
 最后在cmd里输入android -h看到正常显示安卓的命令就表示已经安装配置成功
 
-## 6、创建demo
+# 二、创建demo
 
 ### <1>、
 
