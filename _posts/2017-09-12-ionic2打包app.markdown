@@ -137,19 +137,25 @@ Win10的话就分两条新建，不需要分号。
 
 ## 6、创建demo
 
-- cd到要放置app的目录下，执行：
+### 1、
+
+cd到要放置app的目录下，执行：
 
 ``ionic start yourAppName tutorial --v2 --skip-npm``
 
 这里yourAppName就是你的项目名；tutorial为ionic预定义的一个模板，这个是侧边滑出列表的模板，还有一个就是tabs模板（默认），这个是页面底部有一个tab可以切换的模板，还有一个空白模板blank；--v2为ionic2，不写默认为ionic1；--skip-npm表示跳过npm安装。过程会让你选择是否创建帐号来分享和测试项目，选择n然后回车。
 
-- 然后cd到你的app目录下，执行 
+### 2、
+
+然后cd到你的app目录下，执行 
 
 ``cnpm install``
 
 看到All packages installed 就表示项目已经创建完成。
 
-- 执行 ``ionic serve`` ，此时编译服务器打开，把原代码编译成网页代码保存在www目录下，并用浏览器打开该目录中的index。一般会自动打开网页，并显示相关页面内容
+### 3、
+
+执行 ``ionic serve`` ，此时编译服务器打开，把原代码编译成网页代码保存在www目录下，并用浏览器打开该目录中的index。一般会自动打开网页，并显示相关页面内容
 
 - 打包APK，cd到项目的目录下，首先要执行的是给项目添加对应的打包平台（Android或IOS）
 
@@ -163,7 +169,9 @@ Win10的话就分两条新建，不需要分号。
  > 要注意如果项目添加了安卓平台，要打包成苹果平台的时候需要先把安卓平台删掉，在项目目录下执行命令：
     cordova platform rm android或者ionic platform rm android
     
- - 下方高能高能警戒：由于国内网络环境原因，在执行打包命令前需要做一些处理，打包需要用到gradle 插件，直接执行打包命令比较大几率会下载不了或者下载超级慢或者各种报错，所以我们要先下载好这个插件，做一些配置，然后再执行打包命令。
+ ### 4、
+ 
+ 下方高能高能警戒：由于国内网络环境原因，在执行打包命令前需要做一些处理，打包需要用到gradle 插件，直接执行打包命令比较大几率会下载不了或者下载超级慢或者各种报错，所以我们要先下载好这个插件，做一些配置，然后再执行打包命令。
  [Gradle下载地址](https://services.gradle.org/distributions/),我的百度云链接里已经有了。下载的话要下载2.14.1版本的。
  下载完不用解压，直接放到下图的文件夹里：
  
@@ -171,7 +179,9 @@ Win10的话就分两条新建，不需要分号。
  
  > 注意：新项目没有gradle这个文件夹，需要新建一个，文件名不要写错。
  
- - 修改配置
+ ### 5、
+ 
+ 修改配置
  找到下面路径下的 GradleBuilder.js文件
  
  ![tu5](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111053809-1825893972.png)
@@ -180,11 +190,11 @@ Win10的话就分两条新建，不需要分号。
  
  将：
  
- **'https\\://services.gradle.org/distributions/gradle-2.14.1-all.zip' **
+ **https\\://services.gradle.org/distributions/gradle-2.14.1-all.zip**
  
  改为：
  
- **'../gradle-2.14.1-all.zip'**
+ **../gradle-2.14.1-all.zip**
  
  如下图：
  
@@ -198,7 +208,9 @@ Win10的话就分两条新建，不需要分号。
  
  保存，关闭。
  
- - 回到项目目录下，执行 ``ionic build android``
+ ### 6、
+ 
+ 回到项目目录下，执行 ``ionic build android``
  
  现在没有设置签名文件，所以打包出来的是不带签名的，调试可以用这个方式打包。首次打包会下载一大堆东西，大概需要一到两个小时（运气好网络通畅会快些），所以耐心等待，尽量不要中途关闭重来，容易出错。
  
@@ -208,9 +220,11 @@ Win10的话就分两条新建，不需要分号。
  
  IOS平台的打包类似，但是需要在苹果系统下用xcode来打包，需要安装到苹果手机还要申请签名什么的，稍微麻烦些。
  
- ### 生成签名，并给app添加签名
+### 生成签名，并给app添加签名
  
- - 生成签名需要用到两个工具：keytool和jarsigner，这两个工具分别在在前面安装的**Javajdk1.8.0_131jre\bin**和**Javajdk1.8.0_131bin**。把上两个软件所在的目录添加到环境变量path后，打开cmd输入，cd到你需要保存这个key的目录下（jdk的bin目录），执行：
+ ### 7、
+ 
+ 生成签名需要用到两个工具：keytool和jarsigner，这两个工具分别在在前面安装的**Javajdk1.8.0_131jre\bin**和**Javajdk1.8.0_131bin**。把上两个软件所在的目录添加到环境变量path后，打开cmd输入，cd到你需要保存这个key的目录下（jdk的bin目录），执行：
  
  ```
     keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.keystore
