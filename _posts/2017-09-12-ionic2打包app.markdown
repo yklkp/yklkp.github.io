@@ -25,7 +25,7 @@ tags: [ionic打包, App] # add tag
 
 密钥：**8083**
 
-主要流程
+主要流程:
 
 安装node.js  -->  安装jdk  -->  安装AndroidSDK  -->  安装cordova  -->  安装ionic -->  创建项目  -->  编译项目apk
 
@@ -91,7 +91,7 @@ tags: [ionic打包, App] # add tag
 
 ## 5、安装SDK（需要配环境变量）
 
-- 同样的百度云网盘中有或[SDK官网下载](https://segmentfault.com/a/1190000010194942)。最后点击Finish的时候会打开Android SDK Manager，这是下载相关工具用的，在刚才安装的SDK目录下也可直接打开SDK Manager.exe，如果遇到打不开的情况请用管理员运行。
+- 同样的百度云网盘中有或[SDK官网下载](https://dl.google.com/android/installer_r24.3.4-windows.exe)。最后点击Finish的时候会打开Android SDK Manager，这是下载相关工具用的，在刚才安装的SDK目录下也可直接打开SDK Manager.exe，如果遇到打不开的情况请用管理员运行。
 - 翻墙安装插件
 打开界面上的Tools,选择options，先配置国内镜像：
 域名千万不要输入http或者https协议前缀，
