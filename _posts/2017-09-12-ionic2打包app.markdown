@@ -12,7 +12,7 @@ tags: [ionic打包, App] # add tag
 - ionic3打包详解：[https://www.cnblogs.com/chenglu/p/8608121.html](https://www.cnblogs.com/chenglu/p/8608121.html)
 - ionic3打包：[https://blog.csdn.net/qq_20264891/article/details/79319408](https://blog.csdn.net/qq_20264891/article/details/79319408)
 - node.js安装教程：[https://www.jianshu.com/p/03a76b2e7e00](https://www.jianshu.com/p/03a76b2e7e00)
-- ionic博客：[https://yanxiaodi.gitbooks.io/ionic2-guide/content/tutorial/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.html?q=](https://yanxiaodi.gitbooks.io/ionic2-guide/content/tutorial/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.html?q=)
+- ionic博客：[点我了解一下](https://yanxiaodi.gitbooks.io/ionic2-guide/content/tutorial/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.html?q=)
 
 我的环境版本：
 - node.js: 8.12.0
@@ -169,7 +169,7 @@ cd到要放置app的目录下，执行：
  > 要注意如果项目添加了安卓平台，要打包成苹果平台的时候需要先把安卓平台删掉，在项目目录下执行命令：
     cordova platform rm android或者ionic platform rm android
     
- ### 4、
+### 4、
  
  下方高能高能警戒：由于国内网络环境原因，在执行打包命令前需要做一些处理，打包需要用到gradle 插件，直接执行打包命令比较大几率会下载不了或者下载超级慢或者各种报错，所以我们要先下载好这个插件，做一些配置，然后再执行打包命令。
  [Gradle下载地址](https://services.gradle.org/distributions/),我的百度云链接里已经有了。下载的话要下载2.14.1版本的。
@@ -179,7 +179,7 @@ cd到要放置app的目录下，执行：
  
  > 注意：新项目没有gradle这个文件夹，需要新建一个，文件名不要写错。
  
- ### 5、
+### 5、
  
  修改配置
  找到下面路径下的 GradleBuilder.js文件
@@ -208,7 +208,7 @@ cd到要放置app的目录下，执行：
  
  保存，关闭。
  
- ### 6、
+### 6、
  
  回到项目目录下，执行 ``ionic build android``
  
@@ -222,7 +222,7 @@ cd到要放置app的目录下，执行：
  
 ### 生成签名，并给app添加签名
  
- ### 7、
+### 7、
  
  生成签名需要用到两个工具：keytool和jarsigner，这两个工具分别在在前面安装的**Javajdk1.8.0_131jre\bin**和**Javajdk1.8.0_131bin**。把上两个软件所在的目录添加到环境变量path后，打开cmd输入，cd到你需要保存这个key的目录下（jdk的bin目录），执行：
  
