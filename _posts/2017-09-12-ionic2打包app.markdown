@@ -99,17 +99,17 @@ tags: [ionic打包, App] # add tag
 **mirrors.neusoft.edu.cn**
 
 
-![图1](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320110832376-168559089.png)
+![图1](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320110832376-168559089.png)
 
 
 回到主界面，点packages再点reload
 按照下面的勾选（Android SDK Tools,Android SDK platform-tools,Android SDK Build-tools）：
 
 
-![图2](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320110845297-2079719425.png)
+![图2](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320110845297-2079719425.png)
 
 
-![图3](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320110855964-1710047611.png)
+![图3](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320110855964-1710047611.png)
 
 
 > 注意：ionic2.3.0已要求API25，所以选Android版本为Android 7.1.1（API25）这里面的SDK Platform。
@@ -162,7 +162,7 @@ cd到要放置app的目录下，执行：
    ``ionic platform add android``
  添加完平台后项目目录下会有platforms文件夹
  
- ![图3](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111030553-1324156542.png)
+ ![图4](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111030553-1324156542.png)
  
  可通过命令 ``cordova platform ls`` 显示已经安装的平台项目以及可安装的平台
  
@@ -175,7 +175,7 @@ cd到要放置app的目录下，执行：
  [Gradle下载地址](https://services.gradle.org/distributions/),我的百度云链接里已经有了。下载的话要下载2.14.1版本的。
  下载完不用解压，直接放到下图的文件夹里：
  
- ![图4](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111043078-877516199.png)
+ ![图5](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111043078-877516199.png)
  
  > 注意：新项目没有gradle这个文件夹，需要新建一个，文件名不要写错。
  
@@ -184,7 +184,7 @@ cd到要放置app的目录下，执行：
  修改配置
  找到下面路径下的 GradleBuilder.js文件
  
- ![tu5](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111053809-1825893972.png)
+ ![tu6](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111053809-1825893972.png)
  
  用代码编辑器打开 GradleBuilder.js：
  
@@ -200,11 +200,11 @@ cd到要放置app的目录下，执行：
  
  将：
  
- ![](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111114123-1461578075.png)
+ ![](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111114123-1461578075.png)
  
  改为：
  
- ![](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111123688-898414807.png)
+ ![](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111123688-898414807.png)
  
  保存，关闭。
  
@@ -216,7 +216,7 @@ cd到要放置app的目录下，执行：
  
  打包完成后在项目的platformsandroidbuildoutputsapk路径下就可以找到一个打包好的apk了。此时www目录下的文件也已经被压缩好了。
  
- ![](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111140449-106497728.png)
+ ![](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111140449-106497728.png)
  
  IOS平台的打包类似，但是需要在苹果系统下用xcode来打包，需要安装到苹果手机还要申请签名什么的，稍微麻烦些。
  
@@ -242,7 +242,7 @@ cd到要放置app的目录下，执行：
  
  -validity 20000该数字证书的有效期
  
- ![](https://images2018.cnblogs.com/blog/1174856/201803/1174856-20180320111220046-615164582.png)
+ ![](https://github.com/yklkp/picture/blob/master/picture/1174856-20180320111220046-615164582.png)
  
  执行命令后会要求你输入一堆东西，根据自己情况输入，注意两点：1、输入密码口令的时候是看不见的，尽管写就行，写完就回车，不过要记住这个密码，后面要用；2、最后让你确认信息的时候要输入“是”。
  
