@@ -3,7 +3,7 @@ layout: post
 title: Android签名详细
 date: 2018-10-24 00:00:00 +0300
 description: 上篇文章中的签名可能会遇到问题,这里解决出现的问题 (optional)
-img: how-to-start.jpg # Add image post (optional)
+img: software.jpg # Add image post (optional)
 tags: [Android, 签名] # add tag
 ---
 相应的官方详细[点击这里](https://ionicframework.com/docs/intro/deploying/)
