@@ -7,7 +7,10 @@ img: how-to-start.jpg # Add image post (optional)
 tags: [Android, 签名] # add tag
 ---
 相应的官方详细[点击这里](https://ionicframework.com/docs/intro/deploying/)
-参考文章可以看[这里](https://www.jianshu.com/p/7d2def9b93a8)
+
+参考文章可以看
+[Android打包流程](https://www.jianshu.com/p/7d2def9b93a8)
+[IONIC 开发的Android应用程序签名（或重新签名）详解](http://www.cnblogs.com/share123/p/5900583.html)
 
 在生成未签名后的apk,需要进行签名才能安装,上一篇文章中的签名步骤可能会遇到问题,下面来解决此类问题.
 
