@@ -10,6 +10,7 @@ tags: [Android, 签名] # add tag
 
 参考文章可以看
 [Android打包流程](https://www.jianshu.com/p/7d2def9b93a8)
+
 [IONIC 开发的Android应用程序签名（或重新签名）详解](http://www.cnblogs.com/share123/p/5900583.html)
 
 在生成未签名后的apk,需要进行签名才能安装,上一篇文章中的签名步骤可能会遇到问题,下面来解决此类问题.
@@ -22,7 +23,7 @@ tags: [Android, 签名] # add tag
     keytool -genkey -v -keystore jhy-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias yankai  
 ```
 后面的``yankai``是自己取的名字，输入的密码记住就好，其他的信息随便。这样就生成了``jhy-release-key.keystore``文件。
-执行后会出现：
+执行后可能会出现：
 > JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore jhy-release-key.jks -destkeystore jhy-release-key.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
 
 执行:
@@ -33,7 +34,7 @@ tags: [Android, 签名] # add tag
 
 # 二、签名
 
-把生成的**android-release-unsigned.apk**拷贝到与生成的**jhy-release-key.jks**同一目录下，也就是项目的主目录下（上面提到的执行命令的目录platforms/android），执行命令：
+把生成的**android-release-unsigned.apk**(执行``ionic build android --prod --release``生成未签名状态的apk)拷贝到与生成的**jhy-release-key.jks**同一目录下，也就是项目的主目录下（上面提到的执行命令的目录platforms/android），执行命令：
 ```php
     jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore jhy-release-key.jks android-release-unsigned.apk alias_jhy
 ```

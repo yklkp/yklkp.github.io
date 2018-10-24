@@ -212,8 +212,10 @@ cd到要放置app的目录下，执行：
 
 > 如果之前有过安卓工程的,然后复制一份代码出来的,需要执行如下几个操作:
 首先删除项目目录下的**node_modules**
-再执行:_npm cache clean_
-最后执行:_npm install_
+再执行:**npm cache clean**
+最后执行:**npm install**
+
+> 如果出现缺少module什么的,只需在安装sdk的位置找到SDK Manager,安装加载报错中提到缺少的sdk即可.
  
  回到项目目录下，执行 ``ionic build android``
  
