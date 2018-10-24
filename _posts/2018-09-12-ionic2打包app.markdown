@@ -208,7 +208,12 @@ cd到要放置app的目录下，执行：
  
  保存，关闭。
  
-### <6>、
+### <6>、Build
+
+> 如果之前有过安卓工程的,然后复制一份代码出来的,需要执行如下几个操作:
+首先删除项目目录下的**node_modules**
+再执行:_npm cache clean_
+最后执行:_npm install_
  
  回到项目目录下，执行 ``ionic build android``
  
@@ -222,7 +227,7 @@ cd到要放置app的目录下，执行：
  
 ### <7>、生成签名，并给app添加签名
 
-> [如遇到问题,请移步签名详细文章]()
+> [如遇到问题,请移步签名详细文章](https://yklkp.github.io/%E7%BB%99Android%E7%AD%BE%E5%90%8D/)
  
  生成签名需要用到两个工具：keytool和jarsigner，这两个工具分别在在前面安装的**Javajdk1.8.0_131jre\bin**和**Javajdk1.8.0_131bin**。把上两个软件所在的目录添加到环境变量path后，打开cmd输入，cd到你需要保存这个key的目录下（jdk的bin目录），执行：
  
