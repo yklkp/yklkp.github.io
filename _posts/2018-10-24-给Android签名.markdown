@@ -1,0 +1,46 @@
+---
+layout: post
+title: Android签名详细
+date: 2018-10-24 00:00:00 +0300
+description: 上篇文章中的签名可能会遇到问题,这里解决出现的问题 (optional)
+img: how-to-start.jpg # Add image post (optional)
+tags: [Android, 签名] # add tag
+---
+相应的官方详细[点击这里](https://ionicframework.com/docs/intro/deploying/)
+参考文章可以看[这里](https://www.jianshu.com/p/7d2def9b93a8)
+
+在生成未签名后的apk,需要进行签名才能安装,上一篇文章中的签名步骤可能会遇到问题,下面来解决此类问题.
+
+# 一、生成签名文件
+
+进入项目中,需要cd到**platforms/android**目录下执行以下命令.
+
+```php
+    keytool -genkey -v -keystore jhy-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias yankai  
+```
+后面的``yankai``是自己取的名字，输入的密码记住就好，其他的信息随便。这样就生成了``jhy-release-key.keystore``文件。
+执行后会出现：
+> JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore jhy-release-key.jks -destkeystore jhy-release-key.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
+
+执行:
+```php
+    keytool -importkeystore -srckeystore jhy-release-key.jks -destkeystore jhy-release-key.jks -deststoretype pkcs12 
+```
+执行结果：``Warning: 已将 "jhy-release-key.jks" 迁移到 Non JKS/JCEKS。将 JKS 密钥库作为 "jhy-release-key.jks.old" 进行了备份。``
+
+# 二、签名
+
+把生成的**android-release-unsigned.apk**拷贝到与生成的**jhy-release-key.jks**同一目录下，也就是项目的主目录下（上面提到的执行命令的目录platforms/android），执行命令：
+```php
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore jhy-release-key.jks android-release-unsigned.apk alias_jhy
+```
+也可以生成新的名称的apk
+```php
+    jarsigner -verbose -keystore jhy-release-key.jks -signedjar complate.apk android-release-unsigned.apk yankai
+```
+
+输入签名文件的密码，成功之后主目录下的android-release-unsigned.apk就被签名成功了，会比原来未被签名的apk文件大一点，能够安装到手机或android虚拟机上了。
+
+签名完成后会提示没有时间戳，忽略即可
+
+![图]({{site.baseurl}}/assets/img/2018/appsigned.png)
