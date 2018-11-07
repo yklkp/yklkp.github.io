@@ -18,6 +18,7 @@ tags: [Android, 签名] # add tag
 # 一、生成签名文件
 
 进入项目中,需要cd到**platforms/android**目录下执行以下命令.
+> 注意一定要进入到该目录下才能进行下面的操作
 
 ```php
     keytool -genkey -v -keystore jhy-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias yankai  

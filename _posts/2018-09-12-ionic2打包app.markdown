@@ -78,16 +78,22 @@ tags: [ionic打包, App] # add tag
 ## 3、用cnpm安装cordova和ionic2
 
 ```angular2html
-    先安装 cordova：cnpm install –g cordova@6.5.0
-    再安装 ionic: cnpm install –g ionic@2.0.0
+    先安装 cordova：cnpm install -g cordova@6.5.0
+    再安装 ionic: cnpm install -g ionic@2.0.0
 ```
 注意：安装6.x版本，我用7.x版本给项目添加Android平台会报错，不知道是不是个例，没有做其他测试）。安装完成输入cordova –v查看版本号以及是否安装成功（第一次使用cordova命令时会跳出个选择问你是否打小报告，自行选择y或n，一般选y以协助官方对产品进行改进）。
 这两个安装完成会显示All packages installed…字样。输入ionic –v查看版本号以及是否安装成功。
 
 
-## 4、 安装JAVA JDK（无需配置环境）
+## 4、 安装JAVA JDK
 
 同样的百度云网盘中有或[JDK官网下载](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。下载完成，一路下一步就可以了，安装完成输入java –version看一下是否安装成功以及版本号。安装路径最好建一个文件夹，和等会的sdk放在一起，方便找。注意，路径中不能有中文。
+> 这里也是需要配环境变量的，想知道配成功没有，可以在cmd命令窗口输入 javac -v，如果说命令不存在，则没有配置成功
+
+- 系统变量下
+- JAVA_HOME    你的jdk安装的位置（D:\Work\Develop\java\jdk1.8.0_181）
+- classpath     .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar 2   ----千万别少了前面那个点
+- path的后面添加上面jdk路径加上的/bin，前面记得没有分号的加一个分号（D:\Work\Develop\java\jdk1.8.0_181\bin）
 
 
 ## 5、安装SDK（需要配环境变量）
@@ -120,13 +126,13 @@ tags: [ionic打包, App] # add tag
 
 - 安装完成后开始配置安卓环境变量：
 
-我的电脑 –> 右键属性 -> 高级系统设置 -> 环境变量
+我的电脑 –> 右键属性 -> 高级系统设置 -> 环境变量 -> 系统环境变量
 
 新建变量名：ANDROID_HOME
 
 变量值 ：你的sdk安装的路径
 
-然后在path里添加(前面注意加一个分号) 
+然后在系统变量path里添加(前面注意加一个分号)
 **;%ANDROID_HOME%platform-tools;%ANDROID_HOME%tools**
 
 Win10的话就分两条新建，不需要分号。
@@ -226,6 +232,19 @@ cd到要放置app的目录下，执行：
  ![9]({{site.baseurl}}/assets/img/ionic/9.png)
  
  IOS平台的打包类似，但是需要在苹果系统下用xcode来打包，需要安装到苹果手机还要申请签名什么的，稍微麻烦些。
+
+ > 关于app的启动页面，需要注意如下几点
+ 1、把项目下的一个叫resources的文件夹中的内容删除，替换成自己的图片
+ 2、图片分为两个，icon是显示在桌面的图标,splash是启动app时的启动页面
+ 3、这里的一个巨坑是这两个图片的大小一定是按照规格来的，不仅尺寸大小，占容量大小也要注意。
+ icon.png:最小尺寸为192*192 （最好是1024*1024的)
+          不带圆角
+          格式为 png、psd、ai
+ splash:最小尺寸为2208*2208
+        中间尺寸（因为涉及到缩放和裁剪，边缘可能需要留白，不要放置内容） 1200*1200
+        格式为 png、psd、ai
+ 4、项目目录下执行ionic resources，即可自动生成
+ 5、在config.xml中的 SplashScreenDelay 的 value 值是启动时页面的时间，2000表示2秒
  
 ### <7>、生成签名，并给app添加签名
 
