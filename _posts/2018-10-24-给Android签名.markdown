@@ -15,7 +15,7 @@ tags: [Android, 签名] # add tag
 
 在生成未签名后的apk,需要进行签名才能安装,上一篇文章中的签名步骤可能会遇到问题,下面来解决此类问题.
 
-##更新-2018-12-9
+## 更新-2018-12-9
 ```
     生成签名文件：keytool -genkey -v -keystore myApp.keystore -alias myAppKey -keyalg RSA -keysize 2048 -validity 20000
     对apk签名：jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore myApp.keystore -signedjar myApp.apk android-release-unsigned.apk myAppKey
