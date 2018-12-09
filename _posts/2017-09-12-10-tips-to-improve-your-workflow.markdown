@@ -186,3 +186,13 @@ public function payOp(){
 需要使用我们填在开放平台那个app下面的签名的那个keystore来进行签名。得到签名后的apk安装运行，才可以调起支付接口。
 
 完整做好上面的步骤就可以完成支付的全流程了。当然，在后台代码的实现上还是需要注意很多地方的，有时间的话会再单独写一个里面的坑（主要是官方文档中的巨坑）。然后再后面做微信分享和登陆等，再一一写到来。
+
+相关参考链接：
+- https://blog.csdn.net/m00123456789/article/details/56481656
+- https://pay.weixin.qq.com/wiki/tools/signverify/
+- https://blog.csdn.net/ws1836300/article/details/53893102
+- https://blog.csdn.net/xinluqishi123/article/details/74596357
+- https://www.cnblogs.com/porter/p/6364633.html
+- https://blog.csdn.net/qq_34815528/article/details/78264958
+- https://blog.csdn.net/nnmmbb/article/details/50533138
+- https://segmentfault.com/q/1010000012787760
