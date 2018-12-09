@@ -3,6 +3,7 @@ layout: post
 title: Android app 微信支付爬坑
 date: 2018-12-09 19:00:00 +0300
 description: 具体所记录是从懵逼状态到支付成功
+img: software.jpg
 tags: [Android app, 微信支付，爬坑] # add tag
 ---
 
