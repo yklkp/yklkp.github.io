@@ -3,7 +3,7 @@ layout: post
 title: 学习总结
 date: 2018-09-03 16:10:00 +0300
 description:  # Add post description (optional)
-img: software.jpg # Add image post (optional)
+img: 2018-12-13-05.jpg # Add image post (optional)
 tags: [总结] # add tag
 ---
 

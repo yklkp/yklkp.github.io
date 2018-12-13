@@ -3,7 +3,7 @@ layout: post
 title: Android app 打包详细过程
 date: 2018-09-29 15:15:00 +030000
 description: 
-img: mac.jpg # Add image post (optional)
+img: 2018-12-13-01.jpeg # Add image post (optional)
 tags: [ionic打包, App] # add tag
 ---
 可参考链接（仅参考）：
