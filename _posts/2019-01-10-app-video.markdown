@@ -92,9 +92,9 @@ bower install angular-sanitize
 
 相关代码在：
 
-[videogular.css]("https://yklkp.github.io/assets/css/videogular/videogular.css")
+[videogular.css](https://yklkp.github.io/assets/css/videogular/videogular.css)
 
-[angluar.js]("https://yklkp.github.io/assets/js/angular/angular.js")
+[angluar.js](https://yklkp.github.io/assets/js/angular/angular.js)
 
 **JS**
 ```js
@@ -162,7 +162,7 @@ bower install angular-sanitize
 ```
 **分析：**同样的，删除了一些其他的代码，只保留了视频相关的代码。关键代码是这个``API``，插件加载成功后会获取到**$API**，官方有详细的解释，[戳这里](http://www.videogular.com/tutorials/videogular-api/)，在ios中，视频不会自动播放，需要在打包前在config.xml中加上代码``<preference name="AllowInlineMediaPlayback" value="true" />``。
 
-至此，视频播放完成。
+至此，视频播放完成。当然，里面d视频资源的处理，我使用的是七牛，后面会再学习总结视频的上传，使用七牛或其他云服务器对视频资源的处理和回调，敬请期待。
 
 
 
