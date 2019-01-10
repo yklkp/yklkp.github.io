@@ -43,9 +43,9 @@ ionic plugin add cordova-plugin-file@4.3.3
 ## js和html中代码的实现
 **JS**
 ```js
-
 .controller('Publish_tshirtCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$location', '$ionicPopup', '$cookies', '$ionicHistory', '$ionicModal', '$ionicScrollDelegate', '$timeout', '$ionicLoading', '$ionicNativeTransitions','$filter', 'Util', '$ionicPopover', 'StringUtil', 'ClientOpt', 'MyDialog', 'YorderUtil', 'AppUpdateService', 'JpushService', '$ionicActionSheet', 'Constant', '$cordovaCamera', '$cordovaImagePicker', '$cordovaFileTransfer',
         function ($rootScope, $scope, $state, $stateParams, $location, $ionicPopup, $cookies, $ionicHistory, $ionicModal, $ionicScrollDelegate, $timeout, $ionicLoading, $ionicNativeTransitions, $filter, Util, $ionicPopover, StringUtil, ClientOpt, MyDialog, YorderUtil, AppUpdateService, JpushService, $ionicActionSheet, Constant, $cordovaCamera, $cordovaImagePicker, $cordovaFileTransfer) {
+    //这里需要将安装的几个插件写到上面的函数中
             $scope.image_list = [];
             $scope.selectSize = '';
             $scope.$on('$ionicView.enter', function (scopes, states) {
