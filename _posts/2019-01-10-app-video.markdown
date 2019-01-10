@@ -1,0 +1,185 @@
+---
+layout: post
+title: ionic2实现视频的播放
+date: 2019-01-10 12:00:00 +10000
+img: 2019/03.jpg # Add image post (optional)
+tags: [视频播放,ionic,app ] # add tag
+---
+
+视频播放的插件使用所要注意的地方比较多，下面的步骤也是经历的不少波折。
+
+**videogular**
+这个插件来实现视频播放
+
+### 插件的安装
+```text
+先安装bower :
+
+npm install -g bower
+
+然后，cd 项目文件夹
+
+1. 安装videogular
+
+bower install videogular
+
+2. 安装主题
+
+bower install videogular-themes-default
+
+3. 安装其它插件
+
+bower install videogular-controls
+
+bower install videogular-buffering
+
+bower install videogular-overlay-play
+
+bower install videogular-poster
+
+bower install videogular-ima-ads
+
+bower install videogular-angulartics
+
+4. 安装依赖
+
+bower install angular
+
+bower install angular-sanitize
+```
+**分析**：项目中没有bower的得先安装bower，然后再安装相关插件，安装的过程中会让选择Angular.js等js的版本，查看自己的版本相对应的选择即可，我的是1.4.3版本的。
+
+### 使用
+>重点：我们需要在路由中添加下面几个东西：
+
+```js
+          angular.module('myApp',
+                  [
+                    "ionic",
+                    "ngSanitize",
+                    "com.2fdevs.videogular",
+                    "com.2fdevs.videogular.plugins.controls",
+                    "com.2fdevs.videogular.plugins.overlayplay",
+                    "com.2fdevs.videogular.plugins.poster"
+                  ]
+          )
+```
+加上这个后插件才能够使用。
+
+**HTML**
+```html
+<div class="videogular-container" style="height: 320px;">
+                <videogular vg-player-ready="onPlayerReady($API)" vg-theme="css/videogular/videogular.css">
+                    <vg-media vg-src="art_opus.sources" vg-loop="true" vg-tracks="tracks"></vg-media>
+                    <vg-controls>
+                        <vg-play-pause-button></vg-play-pause-button>
+                        <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        </vg-scrub-bar>
+                        <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                        <vg-volume>
+                            <vg-mute-button></vg-mute-button>
+                            <vg-volume-bar></vg-volume-bar>
+                        </vg-volume>
+                    </vg-controls>
+                    <vg-overlay-play></vg-overlay-play>
+                    <!--<vg-poster vg-url="http://www.videogular.com/assets/images/videogular.png"></vg-poster>-->
+                </videogular>
+            </div>
+```
+
+相关代码在：
+
+[videogular.css]("https://yklkp.github.io/assets/css/videogular/videogular.css")
+
+[angluar.js]("https://yklkp.github.io/assets/js/angular/angular.js")
+
+**JS**
+```js
+.controller('Mine_detailCtrl', ['$rootScope', '$scope', '$state', '$location', '$timeout', '$ionicHistory', '$ionicModal', '$ionicPopover', '$cordovaBarcodeScanner', 'Util', 'StringUtil', 'ClientOpt', 'MyDialog', '$sce', 'Constant', '$ionicSlideBoxDelegate', '$ionicPopup',
+        function ($rootScope, $scope, $state, $location, $timeout, $ionicHistory, $ionicModal, $ionicPopover, $cordovaBarcodeScanner, Util, StringUtil, ClientOpt, MyDialog, $sce, Constant, $ionicSlideBoxDelegate, $ionicPopup) {
+            $scope.API=null;
+            $scope.getLocalTime=Util.getLocalTime;
+            $scope.tracks=[
+                {
+                    src: "http://www.videogular.com/assets/subs/pale-blue-dot.vtt",
+                    kind: "subtitles",
+                    srclang: "en",
+                    label: "English",
+                    default: ""
+                }
+            ];
+            $scope.$on('$ionicView.enter', function (scopes, states) {
+                if($scope.API){
+                    $scope.API.play();
+                }
+                $scope.rootEle = $("#mine_detail[nav-view='active']");
+                if ($scope.loaded && !$rootScope.mineReload) {
+                    return;
+                }
+                $scope.loaded = true;
+                $rootScope.mineReload = false;
+                $scope.is_login = 0;
+                $rootScope.isLogin(function () {
+                    $scope.init();
+                });
+            });
+            $scope.$on('$ionicView.beforeLeave', function (scopes, states) {
+                $scope.API.pause();
+            });
+            $scope.doRefresh=function(){
+                $scope.init();
+                $scope.$broadcast('scroll.refreshComplete');
+            };
+            $scope.onPlayerReady = function(API) {
+                $scope.API = API;
+            };
+            $scope.loadopusAjax = function(){
+                ClientOpt.opt({
+                    act: 'find',
+                    op: 'veget_opusDetail',
+                    opus_id: $scope.opus_id
+                }, function (json) {
+                    //console.log(json.datas)
+                    if (!StringUtil.isEmpty(json.datas.error)) {
+                        MyDialog.tip(json.datas.error);
+                    }
+                    else {
+                        $scope.art_opus = json.datas.art_opus;
+                        $scope.love_conts = json.datas.art_opus.loves;
+                        $scope.collect_conts = json.datas.art_opus.collects;
+                        //love为0表示未关注，1表示已关注
+                        $scope.loved = json.datas.art_opus.is_love;
+                        $scope.collected = json.datas.art_opus.is_collect;
+                    }
+                });
+            }
+            $scope.loadopusDetail = function () {
+                    ClientOpt.opt({
+                        act: 'find',
+                        op: 'veget_opusDetail',
+                        opus_id: $scope.opus_id
+                    }, function (json) {
+                        //console.log(json.datas)
+                        if (!StringUtil.isEmpty(json.datas.error)) {
+                            MyDialog.tip(json.datas.error);
+                        }
+                        else {
+                            //视频
+                            $scope.art_opus.sources=[{ src: $sce.trustAsResourceUrl($scope.art_opus.video_url), type: "video/mp4" }];
+                            $timeout(function(){
+                                $scope.API.play();
+                            },100);
+                            // $($scope.rootEle).find("video").attr("x5-playsinline","true");
+                            // $($scope.rootEle).find("video").attr("webkit-playsinline","true");
+                            // $($scope.rootEle).find("video").attr("playsinline","true");
+                        }
+                    });
+            }
+        }])
+```
+**分析：**同样的，删除了一些其他的代码，只保留了视频相关的代码。关键代码是这个``API``，插件加载成功后会获取到**$API**，官方有详细的解释，[戳这里](http://www.videogular.com/tutorials/videogular-api/)
+
+
+          

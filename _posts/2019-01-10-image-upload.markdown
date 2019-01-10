@@ -11,14 +11,14 @@ tags: [图片上传] # add tag
 
 - 首先安装插件，对应的版本号要明确
 - 在config.xml中加上对应的插件名称和版本号
-- 然后删除之前的项目工程，ionic platform rm android
-- 再新建项目工程，ionic platform add android
-- 打包debug包，ionic build android
-- 打包正式包，ionic build android --prod --release
-- 进入项目工程目录下，cd platforms  cd android
-- 生成签名文件，keytool -genkey -v -keystore myApp.keystore -alias myAppKey -keyalg RSA -keysize 2048 -validity 20000，其中 myApp.keystore为签名文件，myApp.apk是签名成功后的apk名称，都是可以改成自己想要的名称。这里插播个题外话，就是在微信支付这块，这里生成的签名，需要使用微信支付官方的小应用来根据自己的包名获取对应的签名，然后要更新填入到开放平台下对应的app应用中。小工具下载链接在[这里]("https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419319167&token=62bfbbd065e17a3393ccd34f7ca5fb7e3c0cba92&lang=zh_CN")
+- 然后删除之前的项目工程，``ionic platform rm android``
+- 再新建项目工程，``ionic platform add android``
+- 打包debug包，``ionic build android``
+- 打包正式包，``ionic build android --prod --release``
+- 进入项目工程目录下，``cd platforms``  ``cd android``
+- 生成签名文件，``keytool -genkey -v -keystore myApp.keystore -alias myAppKey -keyalg RSA -keysize 2048 -validity 20000``，其中 myApp.keystore为签名文件，myApp.apk是签名成功后的apk名称，都是可以改成自己想要的名称。这里插播个题外话，就是在微信支付这块，这里生成的签名，需要使用微信支付官方的小应用来根据自己的包名获取对应的签名，然后要更新填入到开放平台下对应的app应用中。小工具下载链接在[这里](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419319167&token=62bfbbd065e17a3393ccd34f7ca5fb7e3c0cba92&lang=zh_CN)
 - 把生成的未签名的apk复制粘贴到和签名同目录下（项目工程目录下）
-- 对apk签名，jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore myApp.keystore -signedjar myApp.apk android-release-unsigned.apk myAppKey
+- 对apk签名，``jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore myApp.keystore -signedjar myApp.apk android-release-unsigned.apk myAppKey``
 
 以上是较为完整的使用插件和打包项目的步骤。其中调试用的是debug包，在前面的文章中有介绍，这里就不重复。
 下面来进入正题。
@@ -226,7 +226,7 @@ public function upload_imageOp(){
 
 ![]({{site.baseurl}}/assets/img/2019/02.jpg)
 
-最后附上一个大神总结提供的关于ionic2安装插件的版本问题，复制下来作为备用，链接在[这里]("https://github.com/yanxiaojun617/ionic2_tabs/blob/master/config.xml")
+最后附上一个大神总结提供的关于ionic2安装插件的版本问题，复制下来作为备用，链接在[这里](https://github.com/yanxiaojun617/ionic2_tabs/blob/master/config.xml)
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kit.ionic2tabs" version="1.1.5" xmlns="http://www.w3.org/ns/widgets">
