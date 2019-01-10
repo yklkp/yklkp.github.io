@@ -12,6 +12,7 @@ tags: [视频播放,ionic,app ] # add tag
 这个插件来实现视频播放
 
 ### 插件的安装
+官网[戳这里](http://www.videogular.com/tutorials/how-to-start/)
 ```text
 先安装bower :
 
@@ -135,26 +136,6 @@ bower install angular-sanitize
             $scope.onPlayerReady = function(API) {
                 $scope.API = API;
             };
-            $scope.loadopusAjax = function(){
-                ClientOpt.opt({
-                    act: 'find',
-                    op: 'veget_opusDetail',
-                    opus_id: $scope.opus_id
-                }, function (json) {
-                    //console.log(json.datas)
-                    if (!StringUtil.isEmpty(json.datas.error)) {
-                        MyDialog.tip(json.datas.error);
-                    }
-                    else {
-                        $scope.art_opus = json.datas.art_opus;
-                        $scope.love_conts = json.datas.art_opus.loves;
-                        $scope.collect_conts = json.datas.art_opus.collects;
-                        //love为0表示未关注，1表示已关注
-                        $scope.loved = json.datas.art_opus.is_love;
-                        $scope.collected = json.datas.art_opus.is_collect;
-                    }
-                });
-            }
             $scope.loadopusDetail = function () {
                     ClientOpt.opt({
                         act: 'find',
@@ -179,7 +160,10 @@ bower install angular-sanitize
             }
         }])
 ```
-**分析：**同样的，删除了一些其他的代码，只保留了视频相关的代码。关键代码是这个``API``，插件加载成功后会获取到**$API**，官方有详细的解释，[戳这里](http://www.videogular.com/tutorials/videogular-api/)
+**分析：**同样的，删除了一些其他的代码，只保留了视频相关的代码。关键代码是这个``API``，插件加载成功后会获取到**$API**，官方有详细的解释，[戳这里](http://www.videogular.com/tutorials/videogular-api/)，在ios中，视频不会自动播放，需要在打包前在config.xml中加上代码``<preference name="AllowInlineMediaPlayback" value="true" />``。
+
+至此，视频播放完成。
+
 
 
           
