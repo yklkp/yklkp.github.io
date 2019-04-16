@@ -136,6 +136,8 @@ tags: [ionic打包, App] # add tag
 然后在系统变量path里添加(前面注意加一个分号)
 **;%ANDROID_HOME%platform-tools;%ANDROID_HOME%tools**
 
+> 也可以将百分号的内容换成绝对路径
+
 Win10的话就分两条新建，不需要分号。
 
 配置完成点击确定即可。
