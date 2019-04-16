@@ -74,6 +74,7 @@ tags: [ionic打包, App] # add tag
 (3)、清空缓存： npm 
 最后查看一下npm配置列表是否已经指向淘宝镜像：npm config list
 
+> 安装完成后在cmd中输入 cnpm -v会发现报错“cnpm不是内部或外部命令”，这里的原因是在下载cnpm的时候的位置是在npm_global中。解决办法有两个：一个是直接把npm_global中相关cnpm的文件复制到nmp目录下；第二种就是在环境变量里添加上cnpm所在位置即可。参考：[https://blog.csdn.net/u014540814/article/details/78777961](https://blog.csdn.net/u014540814/article/details/78777961)
 
 ## 3、用cnpm安装cordova和ionic2
 
@@ -91,9 +92,9 @@ tags: [ionic打包, App] # add tag
 > 这里也是需要配环境变量的，想知道配成功没有，可以在cmd命令窗口输入 javac -v，如果说命令不存在，则没有配置成功
 
 - 系统变量下
-- JAVA_HOME    你的jdk安装的位置（D:\Work\Develop\java\jdk1.8.0_181）
-- classpath     .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar 2   ----千万别少了前面那个点
-- path的后面添加上面jdk路径加上的/bin，前面记得没有分号的加一个分号（D:\Work\Develop\java\jdk1.8.0_181\bin）
+- **JAVA_HOME**    你的jdk安装的位置（D:\Work\Develop\java\jdk1.8.0_181）
+- **CLASSPATH**     .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;   (千万别少了前面那个点)
+- **path**的后面添加上面jdk路径加上的/bin，前面记得没有分号的加一个分号（D:\Work\Develop\java\jdk1.8.0_181\bin）
 
 
 ## 5、安装SDK（需要配环境变量）
